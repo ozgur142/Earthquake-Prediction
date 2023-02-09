@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import csv
 import pandas as pd
 import os
+from datetime import datetime
 
 dataFILE = 'earthquake_data.csv'
 url = 'http://www.koeri.boun.edu.tr/scripts/lst8.asp'
@@ -22,7 +23,11 @@ def convertData(data):
         line[6] = None if line[6] == "-.-" else float(line[6])
         line[7] = None if line[7] == "-.-" else float(line[7])
 
+    data.reverse()
+
     return data
+
+
 
 def updateData():
     response = requests.get(url)
@@ -51,10 +56,59 @@ def updateData():
         print('Failed to retrieve data from the website')
 
 
+# return 1 if date1 > date2; else return 0
+def compareDate(date1, date2):
+    # convert string time values to datetime objects
+    date1 = datetime.strptime(date1, '%Y.%m.%d')
+    date2 = datetime.strptime(date2, '%Y.%m.%d')
+    return date1 > date2
+
+# return 1 if time1 > time2; else return 0
+def compareTime(time1, time2):
+    # convert string time values to datetime objects
+    time1 = datetime.strptime(time1, '%H:%M:%S')
+    time2 = datetime.strptime(time2, '%H:%M:%S')
+    return time1 > time2
+
+
+
+def compareData(oldDatas, newData):
+    index = 1
+
+    print(oldDatas["Date"].iloc[1])
+
+    #index 0 for Date
+    while compareDate(oldDatas["Date"].iloc[-index], newData[0]):
+        index +=1
+
+    #index 1 for Time
+    while compareTime(oldDatas["Time"].iloc[-index], newData[1]):
+        index +=1
+
+    return index
+
+
 
 #TODO ******** TODO ***** TODO ***** TODO
-def updating(data):
+def updating(new_data):
     print("file is updating...")
+
+    #reading old data
+    oldData = pd.read_csv(dataFILE)[-500:]
+
+
+    index = compareData(oldData, new_data[0])
+
+
+
+    with open(dataFILE, "a") as file:
+        writer = csv.writer(file)
+        for row in new_data[index:]:
+            writer.writerow(row)
+        file.close()
+
+
+
 
 
 

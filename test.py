@@ -1,14 +1,9 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
+from datetime import datetime
 
-fig = plt.figure(figsize=(10, 10))
-ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree())
+date1 = datetime.strptime("2022.01.01", "%Y.%m.%d")
+date2 = datetime.strptime("2022-12-31", "%Y.%m.%d")
 
-ax.set_extent([26, 44, 35, 43])
-ax.coastlines()
-
-plt.scatter(df['Longitude'], df['Latitude'], transform=ccrs.Geodetic(),
-            color='red', marker='*', s=100)
-
-plt.show()
-
+if date1 < date2:
+    print("Date1 is earlier than Date2")
+else:
+    print("Date2 is earlier than Date1")

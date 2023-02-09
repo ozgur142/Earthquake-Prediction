@@ -1,4 +1,5 @@
 
+
 from extract import *
 from functions import * 
 
@@ -22,7 +23,7 @@ if __name__ == '__main__':
 
 	print(data.head()) #Print the first rows
 
+	print(len(data))
 
-
-	mapTurkey(datas)
+	drawMap(data)
 

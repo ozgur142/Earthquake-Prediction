@@ -2,7 +2,7 @@
 import geopandas as gpd
 import matplotlib.pyplot as plt
 
-def mapTurkey(df, x, y):
+def drawMap(df):
 	fig, ax = plt.subplots(figsize=(8,6))
 	countries = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
 
