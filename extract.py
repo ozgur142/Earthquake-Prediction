@@ -9,7 +9,8 @@ dataFILE = 'earthquake_data.csv'
 url = 'http://www.koeri.boun.edu.tr/scripts/lst8.asp'
 
 def convertData(data):
-    data = data.split("\n")[7:]
+    #data = data.split("\n")[7:] # ilk 10 satir veriyi almiyoruz cunku veriler daha sonradan degisebiliyor ve bu degisme suresinde duzgun veriyi almalik zaman olmus oluyor
+    data = data.split("\n")[17:]
     for line in range(len(data)):
         data[line] = data[line].split()[:9]
 

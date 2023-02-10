@@ -9,8 +9,6 @@ from functions import *
 
 
 
-
-
 if __name__ == '__main__':
 
 	updateData()
@@ -26,4 +24,5 @@ if __name__ == '__main__':
 	print(len(data))
 
 	drawMap(data)
+	drawMap2(data)
 
