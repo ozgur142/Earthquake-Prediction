@@ -75,8 +75,6 @@ def compareTime(time1, time2):
 def compareData(oldDatas, newData):
     index = 1
 
-    print(oldDatas["Date"].iloc[1])
-
     #index 0 for Date
     while compareDate(oldDatas["Date"].iloc[-index], newData[0]):
         index +=1
