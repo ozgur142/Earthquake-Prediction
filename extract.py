@@ -88,7 +88,6 @@ def compareData(oldDatas, newData):
 
 
 
-#TODO ******** TODO ***** TODO ***** TODO
 def updating(new_data):
     print("file is updating...")
 
