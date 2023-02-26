@@ -2,8 +2,8 @@
 
 from extract import *
 from functions import * 
+from ml import *
 
-from sklearn.cluster import KMeans
 
 
 
@@ -27,18 +27,7 @@ if __name__ == '__main__':
 	drawMap2(data)
 
 	#a = date2float(data.loc[:, ["Date"]])
-	X = data.loc[:, ["Latitude(N)", "Longitude(E)"]].values
-
-	#kmeans to group coordinates of earthquakes
-	kmeans = KMeans(n_clusters=20)
-	kmeans.fit(X)
-
-	# Kümelerin etiketlerinin tahmin edilmesi
-	labels = kmeans.predict(X)
-
-	# Verilerin görselleştirilmesi
-	plt.scatter(X[:, 1], X[:, 0], c=labels)
-	plt.show()
+	groupLocation(data)
 
 	#polynomial regression
 
