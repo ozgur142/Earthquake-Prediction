@@ -6,7 +6,7 @@ def groupLocation(data):
 	X = data.loc[:, ["Latitude(N)", "Longitude(E)"]].values
 
 	#kmeans to group coordinates of earthquakes
-	kmeans = KMeans(n_clusters=20)
+	kmeans = KMeans(n_clusters=80)
 	kmeans.fit(X)
 
 	# Kümelerin etiketlerinin tahmin edilmesi

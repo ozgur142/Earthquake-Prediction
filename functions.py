@@ -1,5 +1,6 @@
 
 import geopandas as gpd
+from geopy.geocoders import Nominatim
 import matplotlib.pyplot as plt
 import folium
 import math
@@ -49,7 +50,7 @@ def coordsDistance(coord1, coord2):
 	distance = radius * c
 
 	# Result
-	print("Distance: {:.2f} km".format(distance))
+	#print("Distance: {:.2f} km".format(distance))
 	return distance
 
 
@@ -62,4 +63,14 @@ def date2float(dates):
 		float_date = float(timestamp)
 		float_dates.append(float_date)
 	return np.array(float_dates).reshape(-1, 1)
+
+
+
+def get_coordinates(city_name):
+    geolocator = Nominatim(user_agent="myapp") # create a geolocator object
+    location = geolocator.geocode(city_name) # retrieve the location data
+    if location:
+        return (location.latitude, location.longitude) # return the latitude and longitude as a tuple
+    else:
+        return None # if the location is not found, return None
 
