@@ -94,7 +94,6 @@ def updating(new_data):
     #reading old data
     oldData = pd.read_csv(dataFILE)[-500:]
 
-
     index = compareData(oldData, new_data[0])
 
 
